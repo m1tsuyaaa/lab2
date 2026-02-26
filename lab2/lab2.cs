@@ -1,170 +1,214 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AnimalKingdom {
-  public abstract class Animal {
-    public string Name { get; set; }
-    public int Age { get; set; }
-    public string Habitat { get; set; }
-    public string DietType { get; set; }
-    public double Weight { get; set; }
-    public string Color { get; set; }
+namespace AnimalKingdom
+{
+  public abstract class Animal
+  {
+    public string name { get; set; }
+    public int age { get; set; }
+    public string habitat { get; set; }
+    public string dietType { get; set; }
+    public double weight { get; set; }
+    public string color { get; set; }
 
-    protected Animal(string name, int age, string habitat, string dietType, double weight = 0.0, string color = "Unknown") {
-      Name = name;
-      Age = age;
-      Habitat = habitat;
-      DietType = dietType;
-      Weight = weight;
-      Color = color;
+    protected Animal(string animalName, int animalAge, string animalHabitat, string animalDietType, double animalWeight = 0.0, string animalColor = "Unknown")
+    {
+      name = animalName;
+      age = animalAge;
+      habitat = animalHabitat;
+      dietType = animalDietType;
+      weight = animalWeight;
+      color = animalColor;
     }
 
-    public virtual string GetInfo() {
-      return $"Name: {Name}, Age: {Age}, Habitat: {Habitat}, Diet: {DietType}, Weight: {Weight:F1} kg, Color: {Color}";
-    }
-  }
-
-  public class Mammal : Animal {
-  public bool HasFur { get; set; }
-
-  public Mammal(string name, int age, string habitat, string dietType, bool hasFur, double weight = 0.0, string color = "Unknown")
-    : base(name, age, habitat, dietType, weight, color) {
-      HasFur = hasFur;
-  }
-
-  public override string GetInfo() {
-    string furStatus = HasFur ? "yes" : "no";
-    return base.GetInfo() + $", Type: Mammal, Fur: {furStatus}";
+    public virtual string GetInfo()
+    {
+      return $"Name: {name}, Age: {age}, Habitat: {habitat}, Diet: {dietType}, Weight: {weight:F1} kg, Color: {Color}";
     }
   }
 
-  public class Bird : Animal {
-    public double WingSpan { get; set; }
+  public class Mammal : Animal
+  {
+    public bool hasFur { get; set; }
 
-  public Bird(string name, int age, string habitat, string dietType, double wingSpan, double weight = 0.0, string color = "Unknown")
-    : base(name, age, habitat, dietType, weight, color) {
-      WingSpan = wingSpan;
-  }
+    public Mammal(string name, int age, string habitat, string dietType, bool animalHasFur, double weight = 0.0, string color = "Unknown")
+      : base(name, age, habitat, dietType, weight, color)
+    {
+      hasFur = animalHasFur;
+    }
 
-  public override string GetInfo() {
-    return base.GetInfo() + $", Type: Bird, Wingspan: {WingSpan:F1} m";
+    string furStatus;
+
+    public override string GetInfo()
+    {
+      furStatus = hasFur ? "yes" : "no";
+      return base.GetInfo() + $", Type: Mammal, Fur: {furStatus}";
     }
   }
 
-  public class Fish : Animal {
-    public string WaterType { get; set; }
+  public class Bird : Animal
+  {
+    public double wingSpan { get; set; }
 
-    public Fish(string name, int age, string habitat, string dietType, string waterType, double weight = 0.0, string color = "Unknown")
-      : base(name, age, habitat, dietType, weight, color) {
-        WaterType = waterType;
+    public Bird(string name, int age, string habitat, string dietType, double animalWingSpan, double weight = 0.0, string color = "Unknown")
+      : base(name, age, habitat, dietType, weight, color)
+    {
+      wingSpan = animalWingSpan;
     }
 
-    public override string GetInfo() {
-      return base.GetInfo() + $", Type: Fish, Water: {WaterType}";
+    public override string GetInfo()
+    {
+      return base.GetInfo() + $", Type: Bird, Wingspan: {wingSpan:F1} m";
     }
   }
 
-  public class Reptile : Animal {
-    public bool IsVenomous { get; set; }
+  public class Fish : Animal
+  {
+    public string waterType { get; set; }
 
-    public Reptile(string name, int age, string habitat, string dietType, bool isVenomous, double weight = 0.0, string color = "Unknown")
-      : base(name, age, habitat, dietType, weight, color) {
-        IsVenomous = isVenomous;
+    public Fish(string name, int age, string habitat, string dietType, string animalWaterType, double weight = 0.0, string color = "Unknown")
+      : base(name, age, habitat, dietType, weight, color)
+    {
+      waterType = animalWaterType;
     }
 
-    public override string GetInfo() {
-      string venomStatus = IsVenomous ? "venomous" : "non-venomous";
+    public override string GetInfo()
+    {
+      return base.GetInfo() + $", Type: Fish, Water: {waterType}";
+    }
+  }
+
+  public class Reptile : Animal
+  {
+    public bool isVenomous { get; set; }
+
+    public Reptile(string name, int age, string habitat, string dietType, bool animalIsVenomous, double weight = 0.0, string color = "Unknown")
+      : base(name, age, habitat, dietType, weight, color)
+    {
+      isVenomous = animalIsVenomous;
+    }
+
+    string venomStatus;
+
+    public override string GetInfo()
+    {
+      venomStatus = isVenomous ? "venomous" : "non-venomous";
       return base.GetInfo() + $", Type: Reptile, Venom: {venomStatus}";
     }
   }
 
-  public class Amphibian : Animal {
-    public string SkinMoisture { get; set; }
+  public class Amphibian : Animal
+  {
+    public string skinMoisture { get; set; }
 
-    public Amphibian(string name, int age, string habitat, string dietType, string skinMoisture, double weight = 0.0, string color = "Unknown")
-      : base(name, age, habitat, dietType, weight, color) {
-        SkinMoisture = skinMoisture;
+    public Amphibian(string name, int age, string habitat, string dietType, string animalSkinMoisture, double weight = 0.0, string color = "Unknown")
+      : base(name, age, habitat, dietType, weight, color)
+    {
+      skinMoisture = animalSkinMoisture;
     }
 
-    public override string GetInfo() {
-      return base.GetInfo() + $", Type: Amphibian, Skin: {SkinMoisture}";
+    public override string GetInfo()
+    {
+      return base.GetInfo() + $", Type: Amphibian, Skin: {skinMoisture}";
     }
   }
 
-  public sealed class AnimalManager {
-    private static readonly Lazy<AnimalManager> _instance = new Lazy<AnimalManager>(() => new AnimalManager());
-    private List<Animal> _animals;
+  public sealed class AnimalManager
+  {
+    private static readonly Lazy<AnimalManager> s_instance = new Lazy<AnimalManager>(() => new AnimalManager());
+    private List<Animal> s_animals;
 
-    private AnimalManager() {
-      _animals = new List<Animal>();
+    private AnimalManager()
+    {
+      s_animals = new List<Animal>();
     }
 
-    public static AnimalManager Instance {
-      get { return _instance.Value; }
+    public static AnimalManager Instance
+    {
+      get { return s_instance.Value; }
     }
 
-    public void AddAnimal(Animal animal) {
-      if (animal == null) {
+    public void AddAnimal(Animal animal)
+    {
+      if (animal == null)
+      {
         Console.WriteLine("Error: Animal cannot be null");
         return;
       }
-      _animals.Add(animal);
-      Console.WriteLine($"Animal '{animal.Name}' added successfully");
+      s_animals.Add(animal);
+      Console.WriteLine($"Animal '{animal.name}' added successfully");
     }
 
-    public void ShowAllAnimals() {
-      if (_animals.Count == 0) {
+    public void ShowAllAnimals()
+    {
+      if (s_animals.Count == 0)
+      {
         Console.WriteLine("No animals in the zoo");
         return;
       }
       Console.WriteLine("\n--- All Animals ---");
-      for (int index = 0; index < _animals.Count; ++index) {
-        Console.WriteLine($"{index + 1}. {_animals[index].GetInfo()}");
+      for (int animalIndex = 0; animalIndex < s_animals.Count; ++animalIndex)
+      {
+        Console.WriteLine($"{animalIndex + 1}. {s_animals[animalIndex].GetInfo()}");
       }
     }
 
-    public void ShowAnimalByIndex(int index) {
-      if (index < 0 || index >= _animals.Count) {
+    bool isFound;
+
+    public void ShowAnimalByIndex(int index)
+    {
+      if (index < 0 || index >= s_animals.Count)
+      {
         Console.WriteLine("Error: Invalid index");
         return;
       }
-      Console.WriteLine("\n" + _animals[index].GetInfo());
+      Console.WriteLine("\n" + s_animals[index].GetInfo());
     }
 
-    public void ShowAnimalByName(string name) {
-      if (string.IsNullOrWhiteSpace(name)) {
+    public void ShowAnimalByName(string name)
+    {
+      if (string.IsNullOrWhiteSpace(name))
+      {
         Console.WriteLine("Error: Name cannot be empty");
         return;
       }
-      bool found = false;
-      for (int index = 0; index < _animals.Count; ++index) {
-        if (_animals[index].Name.Equals(name, StringComparison.OrdinalIgnoreCase)) {
-          Console.WriteLine("\n" + _animals[index].GetInfo());
-          found = true;
+      isFound = false;
+      for (int animalIndex = 0; animalIndex < s_animals.Count; ++animalIndex)
+      {
+        if (s_animals[animalIndex].Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+        {
+          Console.WriteLine("\n" + s_animals[animalIndex].GetInfo());
+          isFound = true;
         }
       }
-      if (!found) {
+      if (!isFound)
+      {
         Console.WriteLine($"Animal '{name}' not found");
       }
     }
 
-    public int GetAnimalCount() {
-      return _animals.Count;
+    public int GetAnimalCount()
+    {
+      return s_animals.Count;
     }
   }
 
-  class Program {
-    static void Main(string[] args) {
-      AnimalManager manager = AnimalManager.Instance;
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      AnimalManager animalManager = AnimalManager.Instance;
 
-      manager.AddAnimal(new Mammal("Simba", 5, "Savanna", "Predator", true, 180.5, "Golden"));
-      manager.AddAnimal(new Bird("Zephyr", 3, "Mountains", "Predator", 2.3, 6.2, "Brown"));
-      manager.AddAnimal(new Fish("Finn", 2, "Ocean", "Omnivore", "Salt", 3.5, "Silver"));
-      manager.AddAnimal(new Reptile("Viper", 4, "Desert", "Predator", true, 2.8, "Green"));
-      manager.AddAnimal(new Amphibian("Kermit", 2, "Pond", "Insectivore", "Moist", 0.5, "Green"));
+      animalManager.AddAnimal(new Mammal("Simba", 5, "Savanna", "Predator", true, 180.5, "Golden"));
+      animalManager.AddAnimal(new Bird("Zephyr", 3, "Mountains", "Predator", 2.3, 6.2, "Brown"));
+      animalManager.AddAnimal(new Fish("Finn", 2, "Ocean", "Omnivore", "Salt", 3.5, "Silver"));
+      animalManager.AddAnimal(new Reptile("Viper", 4, "Desert", "Predator", true, 2.8, "Green"));
+      animalManager.AddAnimal(new Amphibian("Kermit", 2, "Pond", "Insectivore", "Moist", 0.5, "Green"));
 
-      bool running = true;
-      while (running) {
+      bool isRunning = true;
+      while (isRunning)
+      {
         Console.WriteLine("\n=== ZOO MANAGER ===");
         Console.WriteLine("1. Show all animals");
         Console.WriteLine("2. Find animal by index");
@@ -173,161 +217,237 @@ namespace AnimalKingdom {
         Console.WriteLine("5. Exit");
         Console.Write("Select option (1-5): ");
 
-        string input = Console.ReadLine()?.Trim() ?? "";
-          int choice;
+        string userInput;
+        int menuChoice;
 
-          if (!int.TryParse(input, out choice) || choice < 1 || choice > 5) {
-            Console.WriteLine("Invalid input. Please enter a number from 1 to 5");
-            continue;
-          }
+        userInput = Console.ReadLine()?.Trim() ?? "";
+        if (!int.TryParse(userInput, out menuChoice) || menuChoice < 1 || menuChoice > 5)
+        {
+          Console.WriteLine("Invalid input. Please enter a number from 1 to 5");
+          continue;
+        }
 
-          switch (choice) {
-            case 1:
-              manager.ShowAllAnimals();
+        switch (menuChoice)
+        {
+          case 1:
+            {
+              animalManager.ShowAllAnimals();
               break;
+            }
 
-            case 2:
-              if (manager.GetAnimalCount() == 0) {
+          case 2:
+            {
+              if (animalManager.GetAnimalCount() == 0)
+              {
                 Console.WriteLine("No animals available");
                 break;
               }
-              Console.Write($"Enter index (0-{manager.GetAnimalCount() - 1}): ");
-              string indexInput = Console.ReadLine()?.Trim() ?? "";
-              int index;
-              if (int.TryParse(indexInput, out index)) {
-                manager.ShowAnimalByIndex(index);
+              Console.Write($"Enter index (0-{animalManager.GetAnimalCount() - 1}): ");
+
+              string indexInput;
+              int animalIndex;
+
+              indexInput = Console.ReadLine()?.Trim() ?? "";
+              if (int.TryParse(indexInput, out animalIndex))
+              {
+                animalManager.ShowAnimalByIndex(animalIndex);
               }
-              else {
+              else
+              {
                 Console.WriteLine("Invalid index format");
               }
               break;
+            }
 
-            case 3:
-              if (manager.GetAnimalCount() == 0) {
+          case 3:
+            {
+              if (animalManager.GetAnimalCount() == 0)
+              {
                 Console.WriteLine("No animals available");
                 break;
               }
               Console.Write("Enter animal name: ");
-              string name = Console.ReadLine()?.Trim() ?? "";
-              manager.ShowAnimalByName(name);
-              break;
 
-            case 4:
-              AddNewAnimal(manager);
-              break;
+              string animalName;
 
-            case 5:
-              running = false;
+              animalName = Console.ReadLine()?.Trim() ?? "";
+              animalManager.ShowAnimalByName(animalName);
+              break;
+            }
+
+          case 4:
+            {
+              AddNewAnimal(animalManager);
+              break;
+            }
+
+          case 5:
+            {
+              isRunning = false;
               Console.WriteLine("Goodbye!");
               break;
             }
-          }
+        }
+      }
+    }
+
+    static void AddNewAnimal(AnimalManager animalManager)
+    {
+      Console.WriteLine("\n--- Add New Animal ---");
+      Console.WriteLine("Select animal type:");
+      Console.WriteLine("1. Mammal");
+      Console.WriteLine("2. Bird");
+      Console.WriteLine("3. Fish");
+      Console.WriteLine("4. Reptile");
+      Console.WriteLine("5. Amphibian");
+      Console.Write("Choice (1-5): ");
+
+      string typeInput;
+      int typeChoice;
+
+      typeInput = Console.ReadLine()?.Trim() ?? "";
+      if (!int.TryParse(typeInput, out typeChoice) || typeChoice < 1 || typeChoice > 5)
+      {
+        Console.WriteLine("Invalid type selection");
+        return;
       }
 
-      static void AddNewAnimal(AnimalManager manager) {
-        Console.WriteLine("\n--- Add New Animal ---");
-        Console.WriteLine("Select animal type:");
-        Console.WriteLine("1. Mammal");
-        Console.WriteLine("2. Bird");
-        Console.WriteLine("3. Fish");
-        Console.WriteLine("4. Reptile");
-        Console.WriteLine("5. Amphibian");
-        Console.Write("Choice (1-5): ");
+      Console.Write("Enter name: ");
+      string animalName;
 
-        string typeInput = Console.ReadLine()?.Trim() ?? "";
-        int typeChoice;
+      animalName = Console.ReadLine()?.Trim() ?? "";
+      if (string.IsNullOrWhiteSpace(animalName))
+      {
+        Console.WriteLine("Name cannot be empty");
+        return;
+      }
 
-        if (!int.TryParse(typeInput, out typeChoice) || typeChoice < 1 || typeChoice > 5) {
-          Console.WriteLine("Invalid type selection");
-          return;
-        }
+      Console.Write("Enter age: ");
 
-        Console.Write("Enter name: ");
-        string name = Console.ReadLine()?.Trim() ?? "";
-        if (string.IsNullOrWhiteSpace(name)) {
-          Console.WriteLine("Name cannot be empty");
-          return;
-        }
+      string ageInput;
+      int animalAge;
 
-        Console.Write("Enter age: ");
-        string ageInput = Console.ReadLine()?.Trim() ?? "";
-        int age;
-        if (!int.TryParse(ageInput, out age) || age < 0) {
-          Console.WriteLine("Invalid age");
-          return;
-        }
+      ageInput = Console.ReadLine()?.Trim() ?? "";
+      if (!int.TryParse(ageInput, out animalAge) || animalAge < 0)
+      {
+        Console.WriteLine("Invalid age");
+        return;
+      }
 
-        Console.Write("Enter habitat: ");
-        string habitat = Console.ReadLine()?.Trim() ?? "";
-        if (string.IsNullOrWhiteSpace(habitat)) {
-          Console.WriteLine("Habitat cannot be empty");
-          return;
-        }
+      Console.Write("Enter habitat: ");
+      string animalHabitat;
 
-        Console.Write("Enter diet type: ");
-        string diet = Console.ReadLine()?.Trim() ?? "";
-        if (string.IsNullOrWhiteSpace(diet)) {
-          Console.WriteLine("Diet type cannot be empty");
-          return;
-        }
+      animalHabitat = Console.ReadLine()?.Trim() ?? "";
+      if (string.IsNullOrWhiteSpace(animalHabitat))
+      {
+        Console.WriteLine("Habitat cannot be empty");
+        return;
+      }
 
-        Console.Write("Enter weight (kg): ");
-        string weightInput = Console.ReadLine()?.Trim() ?? "";
-        double weight;
-        if (!double.TryParse(weightInput, out weight) || weight < 0) {
-          Console.WriteLine("Invalid weight");
-          return;
-        }
+      Console.Write("Enter diet type: ");
+      string animalDiet;
 
-        Console.Write("Enter color: ");
-        string color = Console.ReadLine()?.Trim() ?? "Unknown";
+      animalDiet = Console.ReadLine()?.Trim() ?? "";
+      if (string.IsNullOrWhiteSpace(animalDiet))
+      {
+        Console.WriteLine("Diet type cannot be empty");
+        return;
+      }
 
-        switch (typeChoice) {
-          case 1:
+      Console.Write("Enter weight (kg): ");
+
+      string weightInput;
+      double animalWeight;
+
+      weightInput = Console.ReadLine()?.Trim() ?? "";
+      if (!double.TryParse(weightInput, out animalWeight) || animalWeight < 0.0)
+      {
+        Console.WriteLine("Invalid weight");
+        return;
+      }
+
+      Console.Write("Enter color: ");
+      string animalColor;
+
+      animalColor = Console.ReadLine()?.Trim() ?? "Unknown";
+
+      switch (typeChoice)
+      {
+        case 1:
+          {
             Console.Write("Has fur? (yes/no): ");
-            string furInput = Console.ReadLine()?.Trim().ToLower() ?? "";
-            bool hasFur = furInput == "yes" || furInput == "y";
-            manager.AddAnimal(new Mammal(name, age, habitat, diet, hasFur, weight, color));
-            break;
 
-          case 2:
+            string furInput;
+            bool hasFur;
+
+            furInput = Console.ReadLine()?.Trim().ToLower() ?? "";
+            hasFur = furInput == "yes" || furInput == "y";
+            animalManager.AddAnimal(new Mammal(animalName, animalAge, animalHabitat, animalDiet, hasFur, animalWeight, animalColor));
+            break;
+          }
+
+        case 2:
+          {
             Console.Write("Enter wingspan (m): ");
-            string wingInput = Console.ReadLine()?.Trim() ?? "";
+
+            string wingInput;
             double wingspan;
-            if (!double.TryParse(wingInput, out wingspan) || wingspan < 0) {
+
+            wingInput = Console.ReadLine()?.Trim() ?? "";
+            if (!double.TryParse(wingInput, out wingspan) || wingspan < 0.0)
+            {
               Console.WriteLine("Invalid wingspan");
               return;
             }
-            manager.AddAnimal(new Bird(name, age, habitat, diet, wingspan, weight, color));
+            animalManager.AddAnimal(new Bird(animalName, animalAge, animalHabitat, animalDiet, wingspan, animalWeight, animalColor));
             break;
+          }
 
-          case 3:
+        case 3:
+          {
             Console.Write("Enter water type (fresh/salt): ");
-            string waterType = Console.ReadLine()?.Trim() ?? "";
-            if (string.IsNullOrWhiteSpace(waterType)) {
+
+            string waterType;
+
+            waterType = Console.ReadLine()?.Trim() ?? "";
+            if (string.IsNullOrWhiteSpace(waterType))
+            {
               Console.WriteLine("Water type cannot be empty");
               return;
             }
-            manager.AddAnimal(new Fish(name, age, habitat, diet, waterType, weight, color));
+            animalManager.AddAnimal(new Fish(animalName, animalAge, animalHabitat, animalDiet, waterType, animalWeight, animalColor));
             break;
+          }
 
-          case 4:
+        case 4:
+          {
             Console.Write("Is venomous? (yes/no): ");
-            string venomInput = Console.ReadLine()?.Trim().ToLower() ?? "";
-            bool isVenomous = venomInput == "yes" || venomInput == "y";
-            manager.AddAnimal(new Reptile(name, age, habitat, diet, isVenomous, weight, color));
-            break;
 
-          case 5:
+            string venomInput;
+            bool isVenomous;
+
+            venomInput = Console.ReadLine()?.Trim().ToLower() ?? "";
+            isVenomous = venomInput == "yes" || venomInput == "y";
+            animalManager.AddAnimal(new Reptile(animalName, animalAge, animalHabitat, animalDiet, isVenomous, animalWeight, animalColor));
+            break;
+          }
+
+        case 5:
+          {
             Console.Write("Enter skin moisture: ");
-            string moisture = Console.ReadLine()?.Trim() ?? "";
-            if (string.IsNullOrWhiteSpace(moisture)) {
+
+            string skinMoisture;
+
+            skinMoisture = Console.ReadLine()?.Trim() ?? "";
+            if (string.IsNullOrWhiteSpace(skinMoisture))
+            {
               Console.WriteLine("Skin moisture cannot be empty");
               return;
             }
-            manager.AddAnimal(new Amphibian(name, age, habitat, diet, moisture, weight, color));
+            animalManager.AddAnimal(new Amphibian(animalName, animalAge, animalHabitat, animalDiet, skinMoisture, animalWeight, animalColor));
             break;
-        }
+          }
       }
+    }
   }
 }
